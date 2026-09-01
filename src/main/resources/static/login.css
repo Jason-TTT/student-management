@@ -1,0 +1,92 @@
+/*不止padding 和 width*/
+*{
+    box-sizing: border-box;
+}
+body{
+    /*只会把login-box弄到中间 一层一层的父子结构*/
+    /*浏览器当前可视窗口高度的百分比*/
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fa;
+}
+.login-box{
+    width: 360px;
+    padding: 32px;
+    background: #fff;
+    /*圆角*/
+    border-radius: 12px;
+    /*加阴影*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+
+    display: flex;
+    flex-direction: column;
+    /*盒子内的东西竖着排列*/
+    /*然后留188ox的距离*/
+    gap: 18px;
+}
+.login-box label{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.login-box input{
+    width: 100%;
+    /*占满父类给他的宽度*/
+    padding: 10px 12px;
+    /*上下左右*//
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.login-box input:focus{
+    border-color: blue;
+    outline: none;
+}
+.login-box button{
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #409eff;
+    color: white;
+    cursor: pointer;
+}
+.login-box button:hover{
+    background: darkblue;
+}
+.login-box h1{
+    /*在 盒子中间*/
+    text-align: center;
+}
+.login-box a{
+    text-align: center;
+    text-decoration: none;
+    color: blue;
+}
+.login-box a:hover{
+    text-decoration: underline;
+}
+#message{
+    /*至少20px 内容多可以高点*/
+    min-height: 20px;
+    color: red;
+    /*管理文字 行内容文字*/
+    text-align: center;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 20px;
+    padding: 16px;
+}
+.pagination select {
+    padding: 6px 8px;
+    /*实线边框*/
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+

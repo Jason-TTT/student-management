@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>学生管理系统</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+    <div  class="top-bar">
+        <h1>
+            学生信息管理系统
+        </h1>
+    <div class="user-info">
+        当前用户
+        <span id="username"></span>
+        用户属性
+        <span id="role"></span>
+
+        <button id="layoutBtn">退出</button>
+        <a href="/changPassword.html">管理个人登入信息</a>
+    </div>
+    </div>
+
+    <div class="student-form">
+        <input id="nameInput" type="text" placeholder="请输入学生姓名">
+        <input id="ageInput" type="text" placeholder="请输入学生年龄">
+        <input id="classIdInput" type="text" placeholder="请输入学生班级">
+        <button id="addBtn" type="button">添加学生</button>
+    </div>
+
+    <div class="search-box">
+        <div class="search-item">
+            <label>姓名
+    <input id="searchNameInput">
+                </label>
+        </div>
+        <div class="search-item">
+        <label>
+            班级
+            <input id="searchClassIdInput">
+        </label>
+    </div>
+        <button id="searchBtn" type="button">搜索</button>
+    </div>
+
+    <div class="pagination">
+
+    <button id="prevBtn">上一页</button>
+    <span id="pageInFo"></span>
+    <button id="nextBtn">下一页</button>
+<!--   选择-->
+    <label>
+        选择页数：
+        <select id="pageSizeSelect">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
+    </label>
+
+    <label>
+        选择排序字段
+       <select id="sortBySelect">
+           <option value="id">座号</option>
+           <option value="age">年龄</option>
+       </select>
+    </label>
+
+    <label>
+        选择排序顺序
+        <select id="orderBySelect">
+            <option value="asc">顺序</option>
+            <option value="desc">倒序</option>
+        </select>
+    </label>
+
+    </div>
+
+
+    <div id="message"></div>
+
+    <div class="table-box">
+    <h2>学生列表</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>座号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>班级</th>
+        </tr>
+        </thead>
+        <tbody id="studentBody"></tbody>
+    </table>
+
+    </div>
+
+
+
+    <script src="student.js"></script>
+    </body>
+<html>

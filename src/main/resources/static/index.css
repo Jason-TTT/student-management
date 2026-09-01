@@ -1,0 +1,205 @@
+*{
+    box-sizing: border-box;
+}
+input,select{
+    padding:10px 12px;
+    border-radius: 6px;
+    border:1px solid #ccc;
+}
+input:focus,
+select:focus{
+    border-color: #409eff;
+    outline: none;
+}
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #409eff;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background: #337ecc;
+}
+
+body{
+    background-color: #f5f7fa;
+    margin: 0;
+    min-height: 100vh;
+    /*页面沾满一整个屏幕*/
+    /*统一页面文字*/
+    font-family : Arial,sans-serif;
+}
+.top-bar{
+    display: flex;
+    /*两边贴边 中间自动分配*/
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: white;
+}
+.user-info a {
+    color: #409eff;
+    text-decoration: none;
+}
+.user-info a:hover {
+    text-decoration: underline;
+}
+.user-info {
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.student-form {
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+.student-form input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.student-form input:focus {
+    border-color: #409eff;
+    outline: none;
+}
+.search-box{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin:  20px 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+.search-item{
+    display: flex;
+    align-items: center;
+}
+.search-box input{
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.search-box  button{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #409eff;
+    color: white;
+    cursor: pointer;
+}
+.search-box input:focus{
+    border-color: #409eff;
+    outline: none;
+}
+.pagination{
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+    margin:  20px 30px;
+}
+.pagination label{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.table-box{
+  margin:20px 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+.table-box table{
+    width: 100%;
+    /*合并*/
+    border-collapse: collapse;
+}
+.table-box th ,
+.table-box td{
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+.table-box thead {
+    background: #f0f2f5;
+}
+.table-box thead th {
+    /*400 600 700 文字粗度*/
+    font-weight: 600;
+}
+.table-box tbody tr:hover  {
+    /*鼠标放上去的时候整行变黑*/
+    background: #f7f9fc;
+}
+#message{
+    min-height: 20px;
+    margin: 10px 30px;
+    text-align: center;
+    color: red;
+}
+/* 添加、搜索、表格区域增加阴影 */
+.student-form,
+.search-box,
+.table-box {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* 防止窗口变小时元素硬挤在一行 */
+.student-form,
+.search-box,
+.pagination {
+    flex-wrap: wrap;
+/*    放不下换行*/
+}
+/* 页码信息稍微突出 */
+#pageInFo {
+    font-weight: 600;
+}
+
+#layoutBtn {
+    background: #f56c6c;
+}
+#layoutBtn:hover {
+    background: #d94f4f;
+}
+
+/* 按钮被禁用时 */
+button:disabled {
+    background: #c0c4cc;
+    cursor: not-allowed;
+}
+/* 小屏幕时左右边距缩小 */
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .user-info {
+        flex-wrap: wrap;
+    }
+
+    .student-form,
+    .search-box,
+    .pagination,
+    .table-box {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+
+
+
+
