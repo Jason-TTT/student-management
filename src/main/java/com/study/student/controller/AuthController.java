@@ -8,13 +8,14 @@ import com.study.student.exception.BusinessException;
 import com.study.student.service.SysUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -22,6 +23,7 @@ public class AuthController {
      public AuthController(SysUserService sysUserService) {
         this.sysUserService = sysUserService;
      }
+
      @PostMapping("/register")
     public ResponseEntity<ApiResponse<Void>> register(@Valid @RequestBody SysUser sysUser) {
          sysUserService.register(sysUser);
@@ -30,6 +32,7 @@ public class AuthController {
 //    像数据库提交 数据 而不用get
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<Void>> login(@Valid @RequestBody SysUser sysUser, HttpSession session) {
+
          SysUser user =sysUserService.login(sysUser);
 //       session保存防止再次刷新完后不知道是谁
          session.setAttribute("sysUserId", user.getId());

@@ -1,6 +1,7 @@
 package com.study.student.exception;
 
 import com.study.student.conmon.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,12 +10,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    //    专门盯着所有 Controller，如果它们抛异常，我可以统一处理
-
-
+//专门盯着所有 Controller，如果它们抛异常，我可以统一处理
+//参数异常不需要log
         @ExceptionHandler(MethodArgumentNotValidException.class)
         public ResponseEntity<ApiResponse<Map<String, String>>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
 
@@ -27,10 +27,9 @@ public class GlobalExceptionHandler {
             }
             return ResponseEntity.badRequest().body(ApiResponse.error(400, "参数校验失败", errors));
         }
-
+//在service已经log过了 无需log
         @ExceptionHandler(BusinessException.class)
         public ResponseEntity<ApiResponse<Void>> handleBusinessException(BusinessException ex) {
-
             return ResponseEntity.status(ex.getCode()).body(ApiResponse.error(ex.getCode(), ex.getMessage(), null));
         }
 
@@ -39,8 +38,9 @@ public class GlobalExceptionHandler {
 //        Spring 会优先找更具体、更匹配的异常处理器
         @ExceptionHandler(Exception.class)
         public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {
-            ex.printStackTrace();
+            log.error("服务器出现错误",ex);
+//            选择ex会让logback自动的反馈
             return ResponseEntity.status(500).body(ApiResponse.error(500, "服务器错误", null));
           }
-        }
+    }
 

@@ -62,10 +62,10 @@ public class StudentController {
 
         @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Object>> deleteStudent(@PathVariable int id) {
-//调用下层执行指向性代码
+                //调用下层执行指向性代码
               studentService.deleteStudent(id);
               return ResponseEntity.ok(ApiResponse.success(null));
 
         }
-    }
+}
 

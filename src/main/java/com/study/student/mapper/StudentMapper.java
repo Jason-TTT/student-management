@@ -48,8 +48,7 @@ public interface StudentMapper {
           <choose>
           
            <when test="order=='desc'">
-            desc
-
+          desc
            </when>
          
            <otherwise>

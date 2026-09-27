@@ -4,16 +4,11 @@ import com.study.student.conmon.PageResult;
 import com.study.student.entity.Student;
 import com.study.student.exception.BusinessException;
 import com.study.student.mapper.StudentMapper;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.http.ResponseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import tools.jackson.databind.ser.jdk.JDKMiscSerializers;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
+@Slf4j
 @Service
 public class StudentService {
 
@@ -25,14 +20,15 @@ public class StudentService {
     }
 
     public Student findById(int id) {
+        log.debug("开始查询学生 id={}",id);
         Student student=studentMapper.findById(id);
         if(student==null){
             throw new BusinessException(404,"学生不存在");
         }
         return student;
     }
-
     public PageResult<Student> findByCondition(int page, int size,String name,Integer classId,String order,String sortBy){
+        log.debug("用户开始分页查询");
 //      page为当前页面数
         if(page<1||size<1){
             throw new BusinessException(400,"参数异常");
@@ -63,41 +59,44 @@ public class StudentService {
 
 
     public Student addStudent(Student student) {
+        log.debug("用户开始添加学生");
         Integer row =studentMapper.countClassById(student.getClassId());
         if(row==null){
             throw new BusinessException(400,"班级不存在");
         }
         studentMapper.add(student);
+        log.info("添加成功,id={}",student.getId());
         return student;
     }
-
-    public Student updateStudent(Student newstudents, int id) {
-
-        newstudents.setId(id);
+    public Student updateStudent(Student newStudent, int id) {
+        log.debug("用户开始编辑存在用户数据,id={}",id);
+        newStudent.setId(id);
 //        先检查后update
-        Integer row2 =studentMapper.countClassById(newstudents.getClassId());
+        Integer row2 =studentMapper.countClassById(newStudent.getClassId());
         if(row2==null){
             throw new BusinessException(400,"班级不存在");
         }
-
-        int row = studentMapper.update(newstudents);
+        int row = studentMapper.update(newStudent);
         if (row == 0) {
             throw new BusinessException(404,"学生不存在");
         }
-
-
-        return studentMapper.findById(newstudents.getId());
+        log.info("编辑成功,id={}",id);
+        return studentMapper.findById(newStudent.getId());
     }
 
 
     public void deleteStudent(int id) {
-        Integer row =studentMapper.countClassById(id);
+        log.debug("用户开始进行删除操作,id={}",id);
+        Integer row =studentMapper.countScoreById(id);
         if(row!=null){
+            log.warn("存在成绩记录关联，无法删除,id={}",id);
             throw new BusinessException(400,"该学生存在成绩记录，无法删除");
+
         }
         int row2 =studentMapper.deleteById(id);
         if(row2==0){
             throw new BusinessException(404,"学生不存在");
         }
+        log.info("删除成功,id={}",id);
     }
 }

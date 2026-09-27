@@ -125,8 +125,7 @@ async function initPage() {
     }
 }
 initPage();
-
-    async function addStudent() {
+    async function addStudent(){
         // value  指的是拿这里的东西
         const studentName = document.getElementById("nameInput").value;
         const studentAge = Number(document.getElementById("ageInput").value);
